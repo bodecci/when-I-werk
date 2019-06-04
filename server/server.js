@@ -14,7 +14,7 @@ app.use(express.static('build'));
 
 
 /** Routes */
-app.use('/employee', employeeShiftRouter);
+app.use('/api/employee', employeeShiftRouter);
 
 
 
