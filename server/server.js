@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const PORT = process.env.PORT || 5000;
 
 const employeeShiftRouter = require('./routes/employeeShift.router');
-// const managerShift = require('./routes/managerShift.router');
+// const managerShiftRouter = require('./routes/managerShift.router');
 
 
 /** Middleware */
@@ -15,6 +15,7 @@ app.use(express.static('build'));
 
 /** Routes */
 app.use('/api/employee', employeeShiftRouter);
+// app.use('/api/manager', managerShiftRouter);
 
 
 
