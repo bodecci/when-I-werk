@@ -13,7 +13,7 @@ CREATE TABLE employees
 (
 id SERIAL PRIMARY KEY,
 email VARCHAR(75) NOT NULL,
-first_name VARCHAR(25) NOT NULL,
+first_name VARCHAR(25),
 last_name VARCHAR(25),
 role_id INTEGER REFERENCES employee_role(id) DEFAULT 2
 );
@@ -32,22 +32,22 @@ VALUES ('sharmarke@yahoo.com', 'sharmarke', 'douala', 1);
 CREATE TABLE shift_request
 (
 id SERIAL PRIMARY KEY,
-employee_id INTEGER REFERENCES employees(id),
-shift_date TIMESTAMP WITH TIME ZONE NOT NULL
+employees_id INTEGER REFERENCES employees(id),
+shift_date VARCHAR(100) NOT NULL
 --TODO: shift_hours INTEGER REFERENCES shift_type(id)
 );
 
 
 --- employee shifts view
-SELECT "employee_id", "shift_date", "email", "first_name", "last_name", "role_id"  FROM "shift_request"
-JOIN "employees" ON "employee_id" = "employees"."id";
+SELECT "employees_id", "shift_date", "email", "first_name", "last_name", "role_id"  FROM "shift_request"
+JOIN "employees" ON "employees_id" = "employees"."id";
 
 
 --Insert into the tables
 INSERT INTO "employees" ("email", "first_name", "last_name", "role_id")
 VALUES ('bellamide@yahoo.com', 'bambino', 'darshiki', '2');
 
-INSERT INTO "shift_request" ("employee_id", "shift_date")
-VALUES ('4', '2019-06-13');
+INSERT INTO "shift_request" ("employees_id", "shift_date")
+VALUES ('5', '2019-06-13');
 
 
