@@ -12,7 +12,9 @@ class ShiftInput extends Component {
                 email: '',
                 firstName: '',
                 lastName: '',
-                shiftDate: ''
+                shiftDate: '',
+                shiftStart: '',
+                shiftEnd: ''
                 
             }
         }
