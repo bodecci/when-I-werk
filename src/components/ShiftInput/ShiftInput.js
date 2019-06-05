@@ -1,6 +1,7 @@
 import React, { Component } from  'react';
 import { connect } from 'react-redux';
 import swal from 'sweetalert';
+import Button from '@material-ui/core/Button';
 
 
 class ShiftInput extends Component {
@@ -12,7 +13,6 @@ class ShiftInput extends Component {
                 email: '',
                 firstName: '',
                 lastName: '',
-                shiftDate: '',
                 shiftStart: '',
                 shiftEnd: ''
                 
@@ -33,7 +33,8 @@ class ShiftInput extends Component {
                 email: '',
                 firstName: '',
                 lastName: '',
-                shiftDate: ''
+                shiftStart: '',
+                shiftEnd: ''
             }
         });
     }
@@ -53,21 +54,28 @@ class ShiftInput extends Component {
         return (
             <div>
                 <form onSubmit={this.addNewShift}>
-                    <input type="text" 
+                    <p>First Name:<input type="text" 
                             placeholder="First Name" 
                             value={this.state.newShift.firstName} 
-                            onChange={this.handleChange('firstName')} />
-                    <input type="text" 
+                            onChange={this.handleChange('firstName')} /></p>
+                    <p>Last Name: <input type="text" 
                             placeholder="Last Name" 
                             value={this.state.newShift.lastName}
-                            onChange={this.handleChange('lastName')} />
-                    <input type="text" 
+                            onChange={this.handleChange('lastName')} /></p>
+                    <p>Email: <input type="text" 
                             placeholder="Email" 
                             value={this.state.newShift.email}
-                            onChange={this.handleChange('email')} />
-                    <input type="date" value={this.state.newShift.shiftDate}
-                    onChange={this.handleChange('shiftDate')} />
-                    <input type="Submit" value="Submit" />
+                            onChange={this.handleChange('email')} /></p>
+                            <br></br>
+                    <p>Start Shift: <input type="date" value={this.state.newShift.shiftStart}
+                    onChange={this.handleChange('shiftStart')} /></p>
+                    
+                    <p>End Shift: <input type="date" value={this.state.newShift.shiftEnd}
+                    label="End Shift" onChange={this.handleChange('shiftEnd')} /></p>
+                    
+                    <Button className="button" variant="contained" color="green" 
+                        type = "Submit">
+                Submit</Button>
                 </form>
             </div>
         )

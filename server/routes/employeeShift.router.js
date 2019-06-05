@@ -5,9 +5,12 @@ const router = express.Router();
 
 router.get('/', (req, res) => {
     
-        const queryText = `SELECT "employees_id", "shift_date", "email", 
-        "first_name", "last_name", "role_id"  FROM "shift_request"
-        JOIN "employees" ON "employees_id" = "employees"."id";`;
+        const queryText = `SELECT "employees_id" AS "Employee_ID", 
+                        "shift_start" AS "Start_Time", 
+		                "shift_end" AS "End Time", "email", 
+                        "first_name" AS "FIrst_Name", "last_name" AS "Last_Name", "role_id"  
+                        FROM "shift_request"
+                        JOIN "employees" ON "employees_id" = "employees"."id";`;
     
     pool.query(queryText).then((result) => {
         res.send(result.rows);
@@ -32,9 +35,9 @@ router.post('/', async(req, res) => {
                                                 newShift.lastName]);
         const categoryId = firstResult.rows[0].id;
         const lastInsert = `INSERT INTO "shift_request" 
-                            ("employees_id", "shift_date")
-                            VALUES ($1, $2);`;
-        await client.query(lastInsert, [categoryId, newShift.shiftDate]);
+                            ("employees_id", "shift_start", "shift_end")
+                            VALUES ($1, $2, $3);`;
+        await client.query(lastInsert, [categoryId, newShift.shiftStart, newShift.shiftEnd]);
         await client.query('COMMIT');
         res.sendStatus(201);
     } catch(error) {
