@@ -15,14 +15,14 @@ import App from './components/App/App';
 function* fetchShift(action) {
     try {
         const serverResponse = yield axios.get('/api/employee');
-        const action = { 
+        const Naction = { 
             type: 'SET_SHIFT',
             payload: serverResponse.data
         };
-        yield put(action);  //triggers reducer
+        yield put(Naction);  //triggers reducer
     } catch (error) {
         console.log('Error in axios GET: ', error);
-        alert('Something Went Worng!!!');
+        alert('Something Went Wrong!!!');
     }
 }
 
