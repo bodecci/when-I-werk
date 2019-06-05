@@ -1,5 +1,6 @@
 import React, { Component } from  'react';
 import { connect } from 'react-redux';
+import swal from 'sweetalert';
 
 
 class ShiftInput extends Component {
@@ -8,12 +9,31 @@ class ShiftInput extends Component {
 
         this.state = {
             newShift: {
-                shiftDate: '',
+                email: '',
                 firstName: '',
                 lastName: '',
-                email: ''
+                shiftDate: ''
+                
             }
         }
+    }
+
+    addNewShift = (event) => {
+        
+        console.log('Form Submitted');
+        event.preventDefault();
+        console.log('newShift:', this.state.newShift);
+
+        this.props.dispatch({type: 'ADD_SHIFT', payload: this.state.newShift});
+        swal("Good Job!", "Shift created", "success");
+        this.setState({
+            newShift: {
+                email: '',
+                firstName: '',
+                lastName: '',
+                shiftDate: ''
+            }
+        });
     }
 
     handleChange = propertyName => event => {
@@ -26,11 +46,11 @@ class ShiftInput extends Component {
     }
 
     render () {
-        console.log('this is this.state: ', this.state);
+        // console.log('this is this.state: ', this.state);
         
         return (
             <div>
-                <form>
+                <form onSubmit={this.addNewShift}>
                     <input type="text" 
                             placeholder="First Name" 
                             value={this.state.newShift.firstName} 
@@ -52,4 +72,4 @@ class ShiftInput extends Component {
     }
 }
 
-export default ShiftInput;
+export default connect() (ShiftInput);

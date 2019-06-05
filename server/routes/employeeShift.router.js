@@ -26,13 +26,13 @@ router.post('/', async(req, res) => {
     try {
         await client.query('BEGIN');
         const firstInsert = `INSERT INTO "employees" 
-                            ("email", "first_name", "last_name", "role_id")
-                            VALUES ($1, $2, $3, $4) RETURNING "id";`;
+                            ("email", "first_name", "last_name")
+                            VALUES ($1, $2, $3) RETURNING "id";`;
         const firstResult = await client.query(firstInsert, [newShift.email, newShift.first_name,
-                                                newShift.last_name, newShift.role]);
+                                                newShift.last_name]);
         const categoryId = firstResult.rows[0].id;
         const lastInsert = `INSERT INTO "shift_request" 
-                            ("employee_id", "shift_date")
+                            ("employees_id", "shift_date")
                             VALUES ($1, $2);`;
         await client.query(lastInsert, [categoryId, newShift.shift_date]);
         await client.query('COMMIT');
