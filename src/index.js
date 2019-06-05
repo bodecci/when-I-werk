@@ -1,74 +1,36 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import registerServiceWorker from './registerServiceWorker';
-import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import createSagaMiddleware from 'redux-saga';
 import logger from 'redux-logger';
-import { takeEvery, put } from 'redux-saga/effects';
-import axios from 'axios';
+
 
 
 import App from './components/App/App';
+import rootSaga from './redux/sagas';
+import rootReducer from './redux/reducers';
 
-
-function* fetchShift(action) {
-    try {
-        const serverResponse = yield axios.get('/api/employee');
-        const Naction = { 
-            type: 'SET_SHIFT',
-            payload: serverResponse.data
-        };
-        yield put(Naction);  //triggers reducer
-    } catch (error) {
-        console.log('Error in axios GET: ', error);
-        alert('Something Went Wrong!!!');
-    }
-}
-
-function* postShift(action) {
-    try {
-        yield axios.post('/api/employee', action.payload);
-        console.log('action.payload: ', action.payload);
-
-        const nextAction = {type: 'FETCH_SHIFT'}
-        yield put(nextAction);
-    } catch (error) {
-        console.log('Error in POST: ', error);
-        alert(`There's a problem in POST`)
-    }
-}
-
-function* shiftSaga() {
-    yield takeEvery('FETCH_SHIFT', fetchShift);
-    yield takeEvery('ADD_SHIFT', postShift);
-}
 
 
 const sagaMiddleware = createSagaMiddleware();
 
+const middlewareList = process.env.NODE_ENV === 'development' ?
+  [sagaMiddleware, logger] :
+  [sagaMiddleware];
 
 
-const shiftList = (state= [], action) => {
-    switch (action.type) {
-        case 'SET_SHIFT':
-            return action.payload;
-        default:
-            return state;
-    }
-};
 
 // Create one store that all components can use
 const storeInstance = createStore(
-    combineReducers({
-        shiftList,
-    }),
+    rootReducer, 
     // Add sagaMiddleware to our store
-    applyMiddleware(sagaMiddleware, logger),
+    applyMiddleware(...middlewareList),
 );
 
 // Pass rootSaga into our sagaMiddleware
-sagaMiddleware.run(shiftSaga);
+sagaMiddleware.run(rootSaga);
 
 ReactDOM.render(<Provider store={storeInstance}><App /></Provider>, 
     document.getElementById('root'));
