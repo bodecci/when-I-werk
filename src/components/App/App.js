@@ -6,7 +6,7 @@ import {
   Switch
 } from 'react-router-dom';
 // import ProtectedRoute from "../ProtectedRoute/ProtectedRoute"
-// import {connect} from 'react-redux';
+import {connect} from 'react-redux';
 import ShiftInput from '../ShiftInput/ShiftInput';
 import ViewShift from '../ViewShift/ViewShift'
 import Nav from '../Nav/Nav';
@@ -46,4 +46,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default connect()(App);
