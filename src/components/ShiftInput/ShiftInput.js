@@ -4,8 +4,8 @@ import Button from '@material-ui/core/Button';
 
 const DATE_FORMAT = 'YYYY-MM-DD';
 const TIME_FORMAT = 'HH:mm';
-const START_SHIFT = '09:00';
-const END_SHIFT  = '17:00';
+const START_SHIFT = '00:00';
+const END_SHIFT  = '23:59';
 
 class ShiftInput extends Component {
     constructor(props) {
