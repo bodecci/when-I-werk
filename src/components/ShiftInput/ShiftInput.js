@@ -1,6 +1,5 @@
 import React, { Component } from  'react';
 import { connect } from 'react-redux';
-import swal from 'sweetalert';
 import Button from '@material-ui/core/Button';
 
 
@@ -15,8 +14,8 @@ class ShiftInput extends Component {
                 lastName: '',
                 shiftStart: '',
                 shiftEnd: '',
-                timeStart: '00:00',
-                timeEnd: '23:59'
+                timeStart: '08:00',
+                timeEnd: '17:00'
             }
         }
     }
@@ -28,7 +27,7 @@ class ShiftInput extends Component {
         console.log('newShift:', this.state.newShift);
 
         this.props.dispatch({type: 'ADD_SHIFT', payload: this.state.newShift});
-        swal("Good Job!", "Shift created", "success");
+        // swal("Good Job!", "Shift created", "success");
         this.setState({
             newShift: {
                 email: '',
@@ -36,8 +35,6 @@ class ShiftInput extends Component {
                 lastName: '',
                 shiftStart: '',
                 shiftEnd: '',
-                timeStart: '',
-                timeEnd: ''
             }
         });
     }

@@ -23,7 +23,7 @@ const middlewareList = process.env.NODE_ENV === 'development' ?
 
 
 // Create one store that all components can use
-const storeInstance = createStore(
+const store = createStore(
     rootReducer, 
     // Add sagaMiddleware to our store
     applyMiddleware(...middlewareList),
@@ -32,6 +32,6 @@ const storeInstance = createStore(
 // Pass rootSaga into our sagaMiddleware
 sagaMiddleware.run(rootSaga);
 
-ReactDOM.render(<Provider store={storeInstance}><App /></Provider>, 
+ReactDOM.render(<Provider store={store}><App /></Provider>, 
     document.getElementById('root'));
 registerServiceWorker();
