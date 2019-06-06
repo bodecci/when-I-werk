@@ -7,8 +7,8 @@ router.get('/', (req, res) => {
     
         const queryText = `SELECT "employees_id" AS "Employee_ID", 
                         "shift_start" AS "Start_Time", 
-		                "shift_end" AS "End Time", "email", 
-                        "first_name" AS "FIrst_Name", "last_name" AS "Last_Name", "role_id"  
+		                "shift_end" AS "End_Time", "email", 
+                        "first_name" AS "First_Name", "last_name" AS "Last_Name", "role_id"  
                         FROM "shift_request"
                         JOIN "employees" ON "employees_id" = "employees"."id";`;
     

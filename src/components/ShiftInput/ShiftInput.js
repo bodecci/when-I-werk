@@ -2,6 +2,10 @@ import React, { Component } from  'react';
 import { connect } from 'react-redux';
 import Button from '@material-ui/core/Button';
 
+const DATE_FORMAT = 'YYYY-MM-DD';
+const TIME_FORMAT = 'HH:mm';
+const START_SHIFT = '09:00';
+const END_SHIFT  = '17:00';
 
 class ShiftInput extends Component {
     constructor(props) {
@@ -14,8 +18,8 @@ class ShiftInput extends Component {
                 lastName: '',
                 shiftStart: '',
                 shiftEnd: '',
-                timeStart: '08:00',
-                timeEnd: '17:00'
+                timeStart: START_SHIFT,
+                timeEnd: END_SHIFT
             }
         }
     }

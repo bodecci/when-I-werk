@@ -63,7 +63,7 @@ class ViewShift extends Component {
             <div>
                 
                 <h1>View Shift Page</h1>
-                <pre>{JSON.stringify(this.props.shiftList)}</pre>
+                {/* <pre>{JSON.stringify(this.props.reduxState)}</pre> */}
     <Paper>
       <Table>
         <TableHead>
@@ -76,10 +76,12 @@ class ViewShift extends Component {
           </TableRow>
         </TableHead>
         <TableBody>
-                 {this.props.shiftList.map((shift, id) => {
+            
+                 { this.props.reduxState.shiftList.map((shiftList, id) => {
                       return (<ViewShiftRow history={this.props.history}
-                                 key={id} shift={shift} />);
-                    })}
+                                 key={id} shiftList={shiftList} />);
+                    }) 
+                    }
         </TableBody>
         </Table>
         </Paper>
@@ -89,7 +91,7 @@ class ViewShift extends Component {
 }
 
 const mapStateToProps = reduxState => ({
-    reduxState,
+    reduxState
 });
 
 export default connect(mapStateToProps) (ViewShift);

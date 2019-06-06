@@ -18,7 +18,7 @@ class App extends Component {
     return (
         <div className="App">
           <header>
-            <h1>Shift Creator</h1>
+            <h1>Shift Creatr</h1>
           </header>
           <Router>
             <div>
