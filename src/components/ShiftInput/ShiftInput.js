@@ -14,8 +14,9 @@ class ShiftInput extends Component {
                 firstName: '',
                 lastName: '',
                 shiftStart: '',
-                shiftEnd: ''
-                
+                shiftEnd: '',
+                timeStart: '00:00',
+                timeEnd: '23:59'
             }
         }
     }
@@ -34,7 +35,9 @@ class ShiftInput extends Component {
                 firstName: '',
                 lastName: '',
                 shiftStart: '',
-                shiftEnd: ''
+                shiftEnd: '',
+                timeStart: '',
+                timeEnd: ''
             }
         });
     }
@@ -68,10 +71,16 @@ class ShiftInput extends Component {
                             onChange={this.handleChange('email')} /></p>
                             <br></br>
                     <p>Start Shift: <input type="date" value={this.state.newShift.shiftStart}
-                    onChange={this.handleChange('shiftStart')} /></p>
+                    onChange={this.handleChange('shiftStart')} />
+                                    <input type="time" value={this.state.newShift.timeStart}
+                    label="Time Start" onChange={this.handleChange('timeStart')} />
+                    </p>
                     
                     <p>End Shift: <input type="date" value={this.state.newShift.shiftEnd}
-                    label="End Shift" onChange={this.handleChange('shiftEnd')} /></p>
+                    label="End Shift" onChange={this.handleChange('shiftEnd')} />
+                                <input type="time" value={this.state.newShift.timeEnd}
+                    label="Time End" onChange={this.handleChange('timeEnd')} />
+                    </p>
                     
                     <Button className="button" variant="contained" color="green" 
                         type = "Submit">
