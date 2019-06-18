@@ -1,10 +1,5 @@
 import React, { Component } from 'react';
-import {
-  HashRouter as Router,
-  Route,
-  Redirect,
-  Switch
-} from 'react-router-dom';
+import {HashRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
 // import ProtectedRoute from "../ProtectedRoute/ProtectedRoute"
 import {connect} from 'react-redux';
 import ShiftInput from '../ShiftInput/ShiftInput';
